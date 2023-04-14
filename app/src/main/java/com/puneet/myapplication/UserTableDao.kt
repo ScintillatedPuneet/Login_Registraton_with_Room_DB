@@ -2,9 +2,7 @@ package com.puneet.myapplication
 
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 
 @Dao
@@ -13,11 +11,11 @@ interface UserTableDao {
     @Insert
     suspend fun insertUser(user: UserTable)
 
-    /*@Query("SELECT * FROM userTable WHERE username = :username")
-    fun getByUsername(username: String): LiveData<User>*/
+    @Update
+    suspend fun update(user: UserTable)
 
- /*   @Query("SELECT id, firstName, lastName, dob, phone, userName, password, country FROM users WHERE userName = :username")
-    fun getUserByUsername(username: String): UserTable?*/
+    @Delete
+    suspend fun delete(user: UserTable)
 
     @Query("SELECT * FROM userTable WHERE userName = :username AND password = :password")
     fun getUserByUsernameAndPassword(username: String, password: String): UserTable?
@@ -31,7 +29,11 @@ interface UserTableDao {
     }
 
 
+/*@Query("SELECT * FROM userTable WHERE username = :username")
+    fun getByUsername(username: String): LiveData<User>*/
 
+/*   @Query("SELECT id, firstName, lastName, dob, phone, userName, password, country FROM users WHERE userName = :username")
+   fun getUserByUsername(username: String): UserTable?*/
 
     /* @Query("SELECT * FROM users")
      suspend fun getAll(): List<UserTable>*/
