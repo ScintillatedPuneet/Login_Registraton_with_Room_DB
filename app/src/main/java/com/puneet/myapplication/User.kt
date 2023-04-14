@@ -4,11 +4,11 @@ data class User(
     val id:Int = 0,
     val firstName: String,
     val lastName: String,
-    val dob: Int,
+    val dob: String,
     val phone: String,
     val userName: String,
     val password: String,
-    val country:String
+    val countryName:String
 )
 
 

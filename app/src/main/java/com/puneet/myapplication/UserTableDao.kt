@@ -1,9 +1,9 @@
 package com.puneet.myapplication
 
+
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 
@@ -13,12 +13,30 @@ interface UserTableDao {
     @Insert
     suspend fun insertUser(user: UserTable)
 
-   /* @Query("SELECT * FROM users")
-    suspend fun getAll(): List<UserTable>*/
+    /*@Query("SELECT * FROM userTable WHERE username = :username")
+    fun getByUsername(username: String): LiveData<User>*/
 
-    @Query("SELECT * FROM userTable ORDER BY id ASC")
-    fun readAllData(): LiveData<List<UserTable>>
-}
+ /*   @Query("SELECT id, firstName, lastName, dob, phone, userName, password, country FROM users WHERE userName = :username")
+    fun getUserByUsername(username: String): UserTable?*/
+
+    @Query("SELECT * FROM userTable WHERE userName = :username AND password = :password")
+    fun getUserByUsernameAndPassword(username: String, password: String): UserTable?
+
+
+    @Query("SELECT * FROM userTable WHERE userName = :username")
+    fun getUserByUsername(username: String): UserTable?
+
+
+
+    }
+
+
+
+
+    /* @Query("SELECT * FROM users")
+     suspend fun getAll(): List<UserTable>*/
+
+
     /*@Query("SELECT EXISTS (SELECT * from UserTable where userName=:userName)")
     fun isTaken(userName: String): Boolean
 

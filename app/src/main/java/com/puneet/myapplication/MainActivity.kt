@@ -3,18 +3,32 @@ package com.puneet.myapplication
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 
 
 /*import kotlin.coroutines.jvm.internal.CompletedContinuation.context*/
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var db:MyDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        db =
+            Room.databaseBuilder(application, MyDatabase::class.java, "my_database").build()
+
+        // Hide the navigation bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar()?.hide();
+        }
+
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         supportFragmentManager
             .beginTransaction()
