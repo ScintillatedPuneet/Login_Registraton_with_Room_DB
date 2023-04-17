@@ -2,9 +2,11 @@
 buildscript {
     ext {
         compose_ui_version = '1.7.0'
+        sqlcipher_version = '4.4.0'
     }
 
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.internal.synchronized
 
 
 
-@Database(entities = [UserTable::class], version = 1)
+@Database(entities = [UserTable::class], version = 2)
 abstract class MyDatabase : RoomDatabase() {
         abstract fun userdao(): UserTableDao
 }
@@ -21,7 +21,8 @@ abstract class MyDatabase : RoomDatabase() {
                         Room.databaseBuilder(
                                 applicationContext,
                                 MyDatabase::class.java, "db"
-                        ).build()
+                        ).fallbackToDestructiveMigration()
+                                .build()
                 }
 
 }

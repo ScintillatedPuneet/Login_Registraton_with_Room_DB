@@ -16,10 +16,7 @@ data class UserTable(
     var phone: String,
     var userName: String,
     var password: String,
-    var countryName :String
-) {
-    fun observe(baseActivity: BaseActivity, observer: Observer<User>) {
-
-    }
-}
+    var countryName :String,
+    var imageByteArray: ByteArray?
+)
 

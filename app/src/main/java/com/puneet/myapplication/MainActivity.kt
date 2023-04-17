@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         db =
-            Room.databaseBuilder(application, MyDatabase::class.java, "my_database").build()
+            Room.databaseBuilder(application, MyDatabase::class.java, "my_database").fallbackToDestructiveMigration().build()
 
         // Hide the navigation bar
         if (getSupportActionBar() != null) {

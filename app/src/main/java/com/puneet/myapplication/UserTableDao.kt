@@ -8,7 +8,7 @@ import androidx.room.*
 @Dao
 interface UserTableDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertUser(user: UserTable)
 
     @Update
@@ -24,9 +24,12 @@ interface UserTableDao {
     @Query("SELECT * FROM userTable WHERE userName = :username")
     fun getUserByUsername(username: String): UserTable?
 
+    @Query("SELECT * FROM userTable WHERE userName = :username")
+    fun getByUsername(username: String): LiveData<UserTable?>
 
 
-    }
+
+}
 
 
 /*@Query("SELECT * FROM userTable WHERE username = :username")

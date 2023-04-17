@@ -8,7 +8,8 @@ data class User(
     val phone: String,
     val userName: String,
     val password: String,
-    val countryName:String
+    val countryName:String,
+    val imageByteArray: ByteArray?
 )
 
 
